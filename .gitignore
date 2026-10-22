@@ -1,0 +1,12 @@
+models/
+*-venv/
+miniforge3/
+vosk-model*/
+runs/
+out/
+logs/
+*.zip
+__pycache__/
+*.pyc
+*.wav
+app/data/boot_wav/

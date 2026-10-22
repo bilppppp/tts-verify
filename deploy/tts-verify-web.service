@@ -1,0 +1,17 @@
+[Unit]
+# 模板：把 <server-ip> 换成要监听的地址（如 Tailscale IP 或 127.0.0.1），复制到 ~/.config/systemd/user/ 后 systemctl --user daemon-reload
+Description=TTS 多音字校验 Web (Qwen3-TTS + Kaldi), http://<server-ip>:8770
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/tts-verify/app
+Environment=NO_PROXY=127.0.0.1,localhost
+Environment=no_proxy=127.0.0.1,localhost
+Environment=PYTHONUNBUFFERED=1
+ExecStart=%h/tts-verify/tts-venv/bin/python %h/tts-verify/app/web.py --host <server-ip> --port 8770
+Restart=always
+RestartSec=10
+Nice=5
+
+[Install]
+WantedBy=default.target

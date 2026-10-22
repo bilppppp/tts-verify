@@ -1,0 +1,5 @@
+#!/bin/bash
+# usage: tts-verify check --text "..." --char 字 --correct cuan2 --wrong zan3 [--occurrence N] [--wav f.wav] [--device auto|cuda|cpu]
+unset ALL_PROXY all_proxy
+export no_proxy="127.0.0.1,localhost,$no_proxy" NO_PROXY="127.0.0.1,localhost,$NO_PROXY"
+exec ~/tts-verify/tts-venv/bin/python ~/tts-verify/app/verify.py "$@" 2> >(grep -v -E "Warning|warn\(|pad_token_id|re_han|re_skip|re.compile|SoX|sox|- - -|path variables|^\s+If you|^\s*$" >&2)
